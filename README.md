@@ -1,8 +1,10 @@
 # Novel-ideas
 
 
-Yi Xue. Student number: 20086419
+Name: Yi Xue. Student number: 20086419
+
 In this project there are some functions:
+
 user:
   a post for register
   
@@ -44,6 +46,7 @@ Mongo version v4.2.1
   Apis designed from a developer's perspective，separate schema and api. The API interacts with the database.The dependency interface provided by nodejs simplifies many operations.
   
   Reference:
+  
   https://blog.csdn.net/weixin_30600197/article/details/97791975
   
   https://www.jianshu.com/p/74f98c0c8551
