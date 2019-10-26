@@ -5,6 +5,8 @@ Name: Yi Xue. Student number: 20086419
 
 In this project there are some functions:
 
+github:https://github.com/Ella-Xue/Novel-ideas.git
+
 user:
   a post for register
   
