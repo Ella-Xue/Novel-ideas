@@ -33,20 +33,38 @@ router.addNovel = (req, res) => {
 
     res.setHeader('Content-Type', 'application/json');
 
-    var novel = new Novel();
+    var name = req.body.name;
+    var author = req.body.author;
+    var type = req.body.type;
+    var recommender = req.body.recommender;
 
-    novel.name = req.body.name;
-    novel.author = req.body.author;
-    novel.type = req.body.type;
-    novel.recommender = req.body.recommender;
+    if( name == ''){
+        res.json({ message: 'The novel name can not be empty'} );
+        return;
+    }
 
-    novel.save(function(err) {
-        if (err)
-            res.json({ message: 'Novels NOT Added!', errmsg : err } );
-        else
-            res.json({ message: 'Novels Successfully Added!', data: novel });
+    Novel.findOne({
+        name:name
+    },function (err, info) {
+        if(info){
+            res.json({ message: 'The novel is already exist',errmsg : err} );
+            return;
+        }
+        var novel = new Novel({
+            name: name,
+            author: author,
+            type:type,
+            recommender:recommender
+        });
+        novel.save(function(err) {
+            if (err)
+                res.json({ message: 'Novel not added', errmsg : err } );
+            else
+                res.json({ message: 'Novel Successfully added', data: novel });
+        });
     });
 }
+
 router.giveGrade = (req,res)=>{
     Novel.findById(req.params.id, function(err,novel) {
         if (err)
@@ -66,7 +84,7 @@ router.deleteNovel = (req, res) => {
 
     Novel.findByIdAndRemove(req.params.id, function(err) {
         if (err)
-            res.json({ message: 'Novels NOT DELETED!', errmsg : err } );
+            res.json({ message: 'Novels NOT Found!', errmsg : err } );
         else
             res.json({ message: 'Novels Successfully Deleted!'});
     });

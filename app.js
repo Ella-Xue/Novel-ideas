@@ -3,13 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var Cookies = require('cookies');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const novels = require("./routes/novels");
-const db = require("./routes/db");
-const user = require("./routes/users")
+const author = require("./routes/author");
+const user = require("./routes/user");
 var app = express();
 
 // view engine setup
@@ -25,17 +26,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// Our Custom Donation Web App Routes
+app.post('/user',user.register);
+app.post('/user/login',user.login);
+app.get('/user/:id', user.userInfo);
+app.put('/user/:id', user.editPassword);
+
 app.get('/novels', novels.findAll);
 app.get('/novels/:id', novels.findOne);
 app.post('/novels',novels.addNovel);
 app.put('/novels/:id', novels.giveGrade);
 app.delete('/novels/:id', novels.deleteNovel);
 
-app.get('/users/:id',user.getInfo);
-app.post('/users',user.addUser);
-app.put('/users/:id', user.modifyPassword);
-// catch 404 and forward to error handler
+app.get('/author', author.findAll);
+app.get('/author/:id', author.findOne);
+app.post('/author', author.addAuthor);
+app.put('/author/:id/collect', author.collectAuthor);
+app.delete('/author/:id', author.removeCollection);
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -50,8 +57,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
 
 module.exports = app;
