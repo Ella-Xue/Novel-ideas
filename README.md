@@ -3,7 +3,7 @@
 
 Name: Yi Xue. Student number: 20086419
 
-In this project there are some functions:
+In this project there are some functions:User can record and share the novels and authors the like in the app and manage them. 
 
 github:https://github.com/Ella-Xue/Novel-ideas.git
 
@@ -44,10 +44,8 @@ NNPM version 6.9.0
 Express is a simple and flexible node.js Web application framework that offers a range of powerful features to help you create a variety of Web applications, as well as rich HTTP tools.
 Mongo version v4.2.1
   
-  The attributes of each schema is persistently stored in the mongodb.
-  Apis designed from a developer's perspective，separate schema and api. The API interacts with the database.The dependency interface provided by nodejs simplifies many operations.
-  
-  
+  The attributes of each schema  persistence via mongodb.
+  Full source code in the github
   
   Reference:
   
